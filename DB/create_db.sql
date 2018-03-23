@@ -2,7 +2,7 @@ CREATE TABLE "User" (
 	"role" serial NOT NULL,
 	"id" serial NOT NULL,
 	"email" character varying(64) NOT NULL,
-	"phone" serial NOT NULL,
+	"phone" BIGINT NOT NULL,
 	CONSTRAINT User_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
