@@ -20,10 +20,21 @@ INSERT INTO "UserRating" (user_id, film_id, emotion_id, "like", dislike) VALUES 
 INSERT INTO "Comment" (film_id, text, rating, plus, minus, date) VALUES (1, 'The best film I have ever seen.', 8.7, 1, 0, '2018-03-23');
 
 
-SELECT * FROM "Film" WHERE id = 0; /* Информация о фильме */
+SELECT * FROM "Film" WHERE id = 1; /* Информация о фильме */
 
 SELECT * FROM "Comment" WHERE film_id = 1 ORDER BY rating; /* Комменатрии для данного фильма,
                                                             отсортированные по рейтингу */
-UPDATE "UserRating" SET like = FALSE WHERE user_id = 1; /* Удалить отметку пользователя */
+UPDATE "UserRating" SET "like" = FALSE WHERE user_id = 1; /* Удалить отметку пользователя */
 
-DELETE FROM "UserWatch" WHERE (user_id = 0, film_id = 1);
+DELETE FROM "UserWatch" WHERE user_id = 1;
+
+SELECT * FROM "User" JOIN "UserRating" UR ON "User".id = UR.user_id; /* Информация о пользователе и его оценках */
+
+SELECT * FROM "Film" JOIN "FilmEmotion" FE ON "Film".id = FE.film_id WHERE FE.emotion_id = 1; /* Список фильмов с заданной эмоцией */
+
+SELECT * FROM "User" JOIN "UserWatch" UW ON "User".id = UW.user_id WHERE UW.film_id = 1; /* Информация о пользователях, которые смотрели фильм с id 1*/
+
+
+SELECT * FROM "User" JOIN "UserWatch" UW ON "User".id = UW.user_id,
+(SELECT id FROM "Film" WHERE title = 'Toy Story') as FT
+WHERE  UW.film_id = FT.id; /* Информация о пользователях, которые смотрели фильм с названием Toy Story*/
