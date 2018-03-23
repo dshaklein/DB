@@ -18,3 +18,12 @@ INSERT INTO "UserWatch" (user_id, film_id) VALUES (1, 1);
 INSERT INTO "UserRating" (user_id, film_id, emotion_id, "like", dislike) VALUES (1, 1, 2, TRUE, FALSE);
 
 INSERT INTO "Comment" (film_id, text, rating, plus, minus, date) VALUES (1, 'The best film I have ever seen.', 8.7, 1, 0, '2018-03-23');
+
+
+SELECT * FROM "Film" WHERE id = 0; /* Информация о фильме */
+
+SELECT * FROM "Comment" WHERE film_id = 1 ORDER BY rating; /* Комменатрии для данного фильма,
+                                                            отсортированные по рейтингу */
+UPDATE "UserRating" SET like = FALSE WHERE user_id = 1; /* Удалить отметку пользователя */
+
+DELETE FROM "UserWatch" WHERE (user_id = 0, film_id = 1);
